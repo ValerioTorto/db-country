@@ -22,3 +22,23 @@ where continent_id = 3;
 select name
 from countries c 
 where national_day is null;
+
+-- 6. Per ogni nazione, in ordine alfabetico, selezionare il nome, la regione e il continente
+select c.name,  r.name, c2.name 
+from countries c
+join regions r on c.region_id  = r.region_id  
+join continents c2 on r.continent_id = c2.continent_id 
+order by c.name; 
+
+-- 7. Selezionare le lingue ufficiali dell’Albania
+select l.`language`, c.name 
+from country_languages cl
+join languages l on cl.language_id = l.language_id 
+join countries c on cl.country_id = c.country_id 
+where cl.official = 1 and c.country_id = 5; 
+
+-- 8. Selezionare il Gross domestic product (GDP) medio dello United Kingdom tra il 2000 e il 2010
+select cs.gdp, cs.`year`
+from country_stats cs
+join countries c on cs.country_id = c.country_id 
+where cs.`year` >= 2010 and cs.`year` <= 2020 and c.country_id = 77; 
