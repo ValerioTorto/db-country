@@ -42,3 +42,20 @@ select cs.gdp, cs.`year`
 from country_stats cs
 join countries c on cs.country_id = c.country_id 
 where cs.`year` >= 2010 and cs.`year` <= 2020 and c.country_id = 77; 
+
+-- 9. Selezionare tutte le nazioni in cui si parla hindi, ordinate dalla più estesa alla meno estesa
+select c.name, c.area 
+from countries c 
+join country_languages cl on c.country_id = cl.country_id 
+join languages l on cl.language_id = l.language_id 
+where cl.language_id = 26 
+order by c.area;
+
+--non sono ancora riuscito a fare l'ultimo esercizio normale ma un bonus l'ho fatto
+
+-- BONUS
+-- 11. Selezionare le nazioni il cui national day è avvenuto prima del 1900, ordinate per national day dal più recente al meno recente
+select c.name, c.national_day 
+from countries c 
+where c.national_day < '1900-01-01'
+order by c.national_day asc; 
